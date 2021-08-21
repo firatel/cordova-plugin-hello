@@ -70,9 +70,6 @@
     <source-file src="src/android/libs/armeabi/libtelpo_serial.so" target-dir="libs/armeabi-v7a"  framework="true" />
     <source-file src="src/android/libs/armeabi/libusb_util.so" target-dir="libs/armeabi-v7a"  framework="true" />
 
-
-    <source-file src="src/android/com/primoris/cardreader/MagneticCardHelper.java" target-dir="src/com/primoris/cardreader/cordova/sdk" />
-    <source-file src="src/android/com/primoris/cardreader/SmartCardHelper.java" target-dir="src/com/primoris/cardreader/cordova/sdk" />
     <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 
     <source-file src="src/android/Hello.java" target-dir="src/android/example/plugin/"/>
