@@ -28,8 +28,30 @@ public class Hello extends CordovaPlugin {
         }
         else if(action.equals("info")) {
 
+                                    //Print
+                                    try{
+                                        usbThermalPrinter.reset();
+                                        usbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT);
+                                        usbThermalPrinter.setLeftIndent(0); //Distance from Left
+                                        usbThermalPrinter.setLineSpace(0); //Line Space
+                                        usbThermalPrinter.setTextSize(30); //Text Size
+                                        usbThermalPrinter.setGray(1); //Grey Level
+
+                                        printText = "Hello, from Firatel! \n";
+
+                                        usbThermalPrinter.addString(printText);
+                                        usbThermalPrinter.printString();
+                                        usbThermalPrinter.walkPaper(10); //Walk Paper by Line
+
+                                    } catch (Exception e)
+                                    {
+                                        e.printStackTrace();
+                                        printResult = e.toString();
+
+                                    }
+
             String printerName = data.getString(0);
-            String message = "Printer Info: Telpo320 USB Thermal Printer. Printer Called: " + printerName;
+            String message = "Printer Info: Telpo320 USB Thermal Printer. Printer Called: " + printerName + ". \n Result: " + printResult;
             callbackContext.success(message);
 
             return true;
