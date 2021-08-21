@@ -12,11 +12,12 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.Intent;
 import android.app.Activity;
-//import com.telpo.tps550.api.printer.UsbThermalPrinter;
+
+import com.telpo.tps550.api.printer.UsbThermalPrinter;
 import com.telpo.tps550.api.magnetic.MagneticCard;
 import com.telpo.tps550.api.TelpoException;
 
-import com.telpo.tps550.api.printer.ThermalPrinter;
+//import com.telpo.tps550.api.printer.ThermalPrinter;
 import android.os.BatteryManager;
 
 import com.telpo.tps550.api.printer.NoPaperException;
