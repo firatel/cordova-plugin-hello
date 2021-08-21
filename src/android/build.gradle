@@ -1,8 +1,28 @@
-dependencies {
-    compile files('libs/telpo_api.jar')
-    compile fileTree(dir: 'src/android/libs', include: ['*.jar'])
+android {
+    compileSdk 30
 
+    defaultConfig {
+        minSdk 25
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
     implementation files('libs/SmartCardLib.jar')
     implementation files('libs/telpo_api.jar')
+    implementation 'com.android.support:support-v4:25.2.0'
     implementation files('libs/core-3.1.0.jar')
 }
