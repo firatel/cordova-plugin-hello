@@ -4,7 +4,15 @@ import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import com.telpo.tps550.api.printer.UsbThermalPrinter;
+//import com.example.
+
 public class Hello extends CordovaPlugin {
+
+    UsbThermalPrinter usbThermalPrinter = new UsbThermalPrinter(MainActivity.this);
+    String printText;
+    String printResult;
+
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
