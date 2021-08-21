@@ -21,7 +21,7 @@ public class Hello extends CordovaPlugin {
         else if(action.equals("info")) {
 
             String name = data.getString(0);
-            String message = "Printer Info: Telpo320 USB Thermal Printer. Printer Called: " + printerName;
+            String message = "Printer Info: Telpo320 USB Thermal Printer. Printer Called: " + name;
             callbackContext.success(message);
 
             return true;
