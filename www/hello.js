@@ -5,7 +5,7 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "Hello", "greet", [name]);
     },
 
-    info: function (name, successCallback, errorCallback) {
+    info: function (printerName, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "Hello", "info", [printerName]);
     }
 };
