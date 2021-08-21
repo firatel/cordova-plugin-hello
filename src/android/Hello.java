@@ -9,7 +9,7 @@ import com.telpo.tps550.api.printer.UsbThermalPrinter;
 
 public class Hello extends CordovaPlugin {
 
-    UsbThermalPrinter usbThermalPrinter = new UsbThermalPrinter(MainActivity.this);
+    UsbThermalPrinter usbThermalPrinter;
     String printText;
     String printResult;
 
