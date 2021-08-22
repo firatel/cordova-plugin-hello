@@ -5,9 +5,7 @@
   "cordova": {
     "id": "cordova-plugin-hello",
     "platforms": [
-      "android",
-      "ios",
-      "wp7"
+      "android"
     ]
   },
   "repository": {
