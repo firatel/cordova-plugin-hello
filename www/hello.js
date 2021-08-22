@@ -7,5 +7,9 @@ module.exports = {
 
     info: function (printerName, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "Hello", "info", [printerName]);
-    }
+    },
+
+    printerSetting: function (settings, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "setup", [alignment, leftIntent, lineSpace, fontSize]);
+    },
 };

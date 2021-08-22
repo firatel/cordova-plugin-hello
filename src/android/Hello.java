@@ -35,10 +35,19 @@ public class Hello extends CordovaPlugin {
 
     private CallbackContext connectionCallbackContext;
 
-    //private Context mContext = null;
+    UsbThermalPrinter usbThermalPrinter = null;
 
-    UsbThermalPrinter usbThermalPrinter = null; //= new UsbThermalPrinter(context);
-
+    /***Printer Settings***/
+    /*
+        Alignment
+        public static final int ALGIN_LEFT = 0;
+        public static final int ALGIN_MIDDLE = 1;
+        public static final int ALGIN_RIGHT = 2;
+    */
+    int alignment = 0;
+    int leftIntent = 0;  //Distance from Left
+    int lineSpace = 10;
+    int fontSize = 30;
 
     @Override
     protected void pluginInitialize() {
@@ -52,12 +61,9 @@ public class Hello extends CordovaPlugin {
             super.initialize(cordova, webView);
             this.connectionCallbackContext = null;
             IntentFilter filter = new IntentFilter();
-            //filter.addAction(ReaderMonitor.ACTION_ICC_PRESENT);
-            //webView.getContext().registerReceiver(mReceiver, filter);
+
     }
 
-
-    //UsbThermalPrinter mUsbThermalPrinter = new UsbThermalPrinter(android.app.Activity org.apache.cordova.CordovaInterface.getActivity());
     String printText;
     String printResult;
 
@@ -83,7 +89,6 @@ public class Hello extends CordovaPlugin {
 
         }
         else if(action.equals("info")) {
-
 
             String startRes = null;
             try{
@@ -225,6 +230,17 @@ public class Hello extends CordovaPlugin {
             callbackContext.success(message);
 
             return true;
+        }
+        else if(action.equals("setup"))
+        {
+          String name = data.getString(0);
+
+          alignment = parseInt(data.getString(0));
+          leftIntent = parseInt(data.getString(0));
+          lineSpace = parseInt(data.getString(0));
+          fontSize = parseInt(data.getString(0));
+
+          return true;
         }
         else {
 
