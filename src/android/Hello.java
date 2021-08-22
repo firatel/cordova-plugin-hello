@@ -231,15 +231,37 @@ public class Hello extends CordovaPlugin {
 
             return true;
         }
-        else if(action.equals("setup"))
+        else if(action.equals("alignment"))
         {
           String name = data.getString(0);
 
-          alignment = parseInt(data.getString(0));
-          leftIntent = parseInt(data.getString(0));
-          lineSpace = parseInt(data.getString(0));
-          fontSize = parseInt(data.getString(0));
+          alignment = Integer.parseInt(data.getString(0));
+          //leftIntent = Integer.parseInt(data.getString(1));
+          //lineSpace = Integer.parseInt(data.getString(2));
+          //fontSize = Integer.parseInt(data.getString(3));
 
+          String message = "Alignment: " + data.getString(0)
+          + "\nLeft Indent: " + data.getString(1)
+          + "\nLine Space: " + data.getString(2)
+          + "\nFont Size: " + data.getString(3)
+          ;
+
+          try{
+            usbThermalPrinter.setAlgin(alignment);
+            usbThermalPrinter.setLeftIndent(leftIntent);
+            usbThermalPrinter.setLineSpace(lineSpace);
+            usbThermalPrinter.setTextSize(fontSize);
+
+            usbThermalPrinter.addString("Test Print");
+            usbThermalPrinter.printString();
+            usbThermalPrinter.walkPaper(20);
+
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+          }
+
+          callbackContext.success(message);
           return true;
         }
         else {
