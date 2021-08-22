@@ -13,12 +13,18 @@ import android.content.IntentFilter;
 import android.content.Intent;
 import android.app.Activity;
 
+import java.lang.reflect.Method;
+
 import com.telpo.tps550.api.printer.UsbThermalPrinter;
 import com.telpo.tps550.api.magnetic.MagneticCard;
 import com.telpo.tps550.api.TelpoException;
+import java.lang.reflect.InvocationTargetException;
+import com.telpo.tps550.api.util.SystemUtil;
 
 //import com.telpo.tps550.api.printer.ThermalPrinter;
 import android.os.BatteryManager;
+
+import com.telpo.tps550.api.led.Led;
 
 import com.telpo.tps550.api.printer.NoPaperException;
 import com.telpo.tps550.api.printer.OverHeatException;
@@ -28,10 +34,17 @@ import android.content.BroadcastReceiver;
 public class Hello extends CordovaPlugin {
 
     private CallbackContext connectionCallbackContext;
-    //Context context = this.cordova.getActivity().getApplicationContext();
+
+    //private Context mContext = null;
+
+    UsbThermalPrinter usbThermalPrinter = null; //= new UsbThermalPrinter(context);
+
 
     @Override
     protected void pluginInitialize() {
+
+    Context context = this.cordova.getActivity().getApplicationContext();
+    usbThermalPrinter = new UsbThermalPrinter(context);
     }
 
     @Override
@@ -43,7 +56,8 @@ public class Hello extends CordovaPlugin {
             //webView.getContext().registerReceiver(mReceiver, filter);
     }
 
-    UsbThermalPrinter mUsbThermalPrinter = new UsbThermalPrinter(webView.getContext());
+
+    //UsbThermalPrinter mUsbThermalPrinter = new UsbThermalPrinter(android.app.Activity org.apache.cordova.CordovaInterface.getActivity());
     String printText;
     String printResult;
 
@@ -53,9 +67,11 @@ public class Hello extends CordovaPlugin {
     public final String STATUS_ERROR_GENERAL = "ERROR_GENERAL";
 
     private Activity activity = null;
+    private Context mContext = null;
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+
 
         if (action.equals("greet")) {
 
@@ -68,55 +84,144 @@ public class Hello extends CordovaPlugin {
         }
         else if(action.equals("info")) {
 
-          //console.log("Context: ", context);
-          //Print
-          //print("Hello Printer!!!");
-/*
-                              try {
-                                  int res = startPrinting("Hello from Printer!");
-                                  callbackContext.success(res);
-                              } catch (Exception ex) {
-                                  System.out.println("in telpo exception" + ex);
-                              }
-*/
 
-//Print
-                try{
-                    mUsbThermalPrinter.reset();
-                    mUsbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT);
-                    mUsbThermalPrinter.setLeftIndent(0); //Distance from Left
-                    mUsbThermalPrinter.setLineSpace(0); //Line Space
-                    mUsbThermalPrinter.setTextSize(30); //Text Size
-                    mUsbThermalPrinter.setGray(1); //Grey Level
+            String startRes = null;
+            try{
+                usbThermalPrinter.start(0); //Normal Speed
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                startRes = e.toString();
 
-                    printText = "Hello, from Firatel! \n";
+            }
 
-                    mUsbThermalPrinter.addString(printText);
-                    mUsbThermalPrinter.printString();
-                    mUsbThermalPrinter.walkPaper(10); //Walk Paper by Line
+            String ver = null;
+            try{
+                ver = usbThermalPrinter.getVersion();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                ver = e.toString();
 
-                } catch (Exception e)
-                {
-                    e.printStackTrace();
-                    printResult = e.toString();
-                    //console.log("Error: ", printResult);
-/*
-                    alertDialog.setTitle("Print Error");
-                    alertDialog.setMessage(printResult);
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            }
-                    );
-                    alertDialog.show();
-*/
-                }
+            }
 
-            String printerName = data.getString(0);
-            String message = "Printer Info: Telpo320 USB Thermal Printer. Printer Called: " + printerName + ". Error: " + printResult;
+            String resetRes = null;
+            try{
+                usbThermalPrinter.reset();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                resetRes = e.toString();
+
+            }
+
+            String alignRes = null;
+            try{
+                usbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                alignRes = e.toString();
+
+            }
+
+            String leftRes = null;
+            try{
+                usbThermalPrinter.setLeftIndent(0); //Distance from Left
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                leftRes = e.toString();
+
+            }
+
+            String lineSpaceRes = null;
+            try{
+                usbThermalPrinter.setLineSpace(0); //Line Space
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                lineSpaceRes = e.toString();
+
+            }
+
+            String textSizeRes = null;
+            try{
+                usbThermalPrinter.setTextSize(0); //Text Size
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                textSizeRes = e.toString();
+
+            }
+
+            String setGrayRes = null;
+            try{
+                usbThermalPrinter.setGray(1); //Grey Level
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                setGrayRes = e.toString();
+
+            }
+
+            String addStringRes = null;
+            try{
+                usbThermalPrinter.addString("Hello from Thermal Printer!"); //Add String Here
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                addStringRes = e.toString();
+
+            }
+
+            String printStringRes = null;
+            try{
+                usbThermalPrinter.printString();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                printStringRes = e.toString();
+
+            }
+
+            String walkPaperRes = null;
+            try{
+                usbThermalPrinter.walkPaper(20); //Walk Paper by Line
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                walkPaperRes = e.toString();
+
+            }
+
+
+            int deviceType = SystemUtil.getDeviceType();
+            String message = "Device Type: " + String.valueOf(deviceType)
+            + "\nStart Error: " + startRes
+            + "\nDevice Version: " + ver
+            + "\nReset Error: " + resetRes
+            + "\nAlign Left Error: " + alignRes
+            + "\nLeft Indent Error: " + leftRes
+            + "\nLine Space Error: " + lineSpaceRes
+            + "\nText Size Error: " + textSizeRes
+            + "\nSet Gray Level: " + setGrayRes
+            + "\nAdd String Error: " + addStringRes
+            + "\nPrint String Error: " + printStringRes
+            + "\nWalk Paper Error: " + walkPaperRes
+            ;
+
             callbackContext.success(message);
 
             return true;
@@ -127,6 +232,9 @@ public class Hello extends CordovaPlugin {
 
         }
     }
+
+
+
 
      public static void open() throws TelpoException {
         MagneticCard.open();
@@ -156,37 +264,7 @@ public class Hello extends CordovaPlugin {
              }
     }
 
-     //private int startPrinting(String content, String signImageDataUrl, String logoPath) {
 
-/*     private int startPrinting(String content) {
-        try {
-                  UsbThermalPrinter.reset();
-                  UsbThermalPrinter.setAlgin(UsbThermalPrinter.ALGIN_LEFT);
-                  UsbThermalPrinter.setLeftIndent(0); //Distance from Left
-                  UsbThermalPrinter.setLineSpace(0); //Line Space
-                  UsbThermalPrinter.setTextSize(30); //Text Size
-                  UsbThermalPrinter.setGray(1); //Grey Level
-
-                  printText = "Hello, from Firatel! \n";
-
-                  UsbThermalPrinter.addString(printText);
-                  UsbThermalPrinter.printString();
-                  UsbThermalPrinter.walkPaper(10); //Walk Paper by Line
-            return 0;
-        } catch (NoPaperException ex) {
-            ex.printStackTrace();
-            return -1;
-        } catch (OverHeatException ex) {
-            ex.printStackTrace();
-            return -3;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return -4;
-        } finally {
-            UsbThermalPrinter.stop();
-        }
-    }
-*/
     private float getBatteryPercent() {
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = this.activity.registerReceiver(new BroadcastReceiver() {
@@ -200,40 +278,4 @@ public class Hello extends CordovaPlugin {
         return (level / (float) 2.0) * 100;
     }
 
-/*
-    public void print(String res) {
-
-        String stringToPrint = res;
-        String status = STATUS_OK;
-
-        try {
-            UsbThermalPrinter.start(0);
-            UsbThermalPrinter.reset();
-            UsbThermalPrinter.setMonoSpace(true);
-            UsbThermalPrinter.setGray(15);
-
-            UsbThermalPrinter.addString(stringToPrint.replaceAll(" ","  "));
-            UsbThermalPrinter.printString();
-
-            UsbThermalPrinter.walkPaper(20);
-        } catch (Exception e) {
-            e.printStackTrace();
-            String result = e.toString();
-
-            if (result.equals("com.telpo.tps550.api.printer.NoPaperException")) {
-                status = STATUS_ERROR_NO_PAPER;
-            } else if (result.equals("com.telpo.tps550.api.printer.OverHeatException")) {
-                status = STATUS_ERROR_OVERHEAT;
-            } else {
-                status = STATUS_ERROR_GENERAL;
-            }
-        } finally {
-            UsbThermalPrinter.stop();
-        }
-
-        //JSObject ret = new JSObject();
-        //ret.put("status", status);
-        //call.success(ret);
-    }
-*/
 }
