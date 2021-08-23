@@ -202,6 +202,28 @@ public class Hello extends CordovaPlugin {
 
             }
 
+            String addStringRes = null;
+            try{
+                usbThermalPrinter.addString("Support Android Ver: 7.1.1 ++"); //Add String Here
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                addStringRes = e.toString();
+
+            }
+
+            String printStringRes = null;
+            try{
+                usbThermalPrinter.printString();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                printStringRes = e.toString();
+
+            }
+
             //String addStringRes = null;
             try{
                 usbThermalPrinter.addString("Gradle Ver: 7.1.1"); //Add String Here
@@ -251,7 +273,7 @@ public class Hello extends CordovaPlugin {
             + "\nWalk Paper Error: " + walkPaperRes
             ;
 
-            callbackContext.success(message);
+            //callbackContext.success(message);
 
             return true;
         }
