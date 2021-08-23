@@ -23,7 +23,21 @@ module.exports = {
 
     fontSize: function (font, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "Hello", "fontSize", [font]);
+    },
+
+    addString: function (text, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "addString", [text]);
+    },
+
+    printString: function (print, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "printString", [print]);
+    },
+
+    walkPaper: function (num, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "walkPaper", [num]);
     }
+
+
 
 
 

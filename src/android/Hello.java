@@ -48,6 +48,8 @@ public class Hello extends CordovaPlugin {
     int leftIntent = 0;  //Distance from Left
     int lineSpace = 10;
     int fontSize = 30;
+    int walkRow = 0;
+    String textPrint = null;
 
     @Override
     protected void pluginInitialize() {
@@ -249,15 +251,47 @@ public class Hello extends CordovaPlugin {
         else if(action.equals("fontSize"))
         {
           fontSize = Integer.parseInt(data.getString(0));
-
-          String message = "Alignment: " + alignment
-          + "\nLeft Indent: " + leftIntent
-          + "\nLine Space: " + lineSpace
-          + "\nFont Size: " + fontSize
-          ;
-
-          callbackContext.success(message);
-
+          return true;
+        }
+        else if(action.equals("addString"))
+        {
+          textPrint = data.getString(0);
+          //String addStringRes = null;
+          try{
+              usbThermalPrinter.addString(textPrint); //Add String Here
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //addStringRes = e.toString();
+          }
+          return true;
+        }
+        else if(action.equals("printString"))
+        {
+          //String printStringRes = null;
+          try{
+              usbThermalPrinter.printString();
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //printStringRes = e.toString();
+          }
+          return true;
+        }
+        else if(action.equals("walkPaper"))
+        {
+          walkRow = Integer.parseInt(data.getString(0));
+          //String walkPaperRes = null;
+          try{
+              usbThermalPrinter.walkPaper(walkRow); //Walk Paper by Line
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //walkPaperRes = e.toString();
+          }
           return true;
         }
         else {
