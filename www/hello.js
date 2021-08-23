@@ -9,6 +9,14 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "Hello", "info", [printerName]);
     },
 
+    startPrinter: function (start, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "startPrinter", [start]);
+    },
+
+    resetPrinter: function (reset, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "resetPrinter", [reset]);
+    },
+
     alignment: function (align, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "Hello", "alignment", [align]);
     },

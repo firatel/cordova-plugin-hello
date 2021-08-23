@@ -294,6 +294,34 @@ public class Hello extends CordovaPlugin {
           }
           return true;
         }
+        else if(action.equals("startPrinter"))
+        {
+          //String startRes = null;
+          try{
+              usbThermalPrinter.start(0); //Normal Speed
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //startRes = e.toString();
+
+          }
+          return true;
+        }
+        else if(action.equals("resetPrinter"))
+        {
+          //String resetRes = null;
+          try{
+              usbThermalPrinter.reset();
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //resetRes = e.toString();
+
+          }
+          return true;
+        }
         else {
 
             return false;
