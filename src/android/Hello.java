@@ -160,7 +160,7 @@ public class Hello extends CordovaPlugin {
 
             String textSizeRes = null;
             try{
-                usbThermalPrinter.setTextSize(10); //Text Size
+                usbThermalPrinter.setTextSize(30); //Text Size
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -182,7 +182,7 @@ public class Hello extends CordovaPlugin {
 
             String addStringRes = null;
             try{
-                usbThermalPrinter.addString("Hello from Thermal Printer!"); //Add String Here
+                usbThermalPrinter.addString("Cordova Ver: 10.0.0"); //Add String Here
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -192,6 +192,28 @@ public class Hello extends CordovaPlugin {
             }
 
             String printStringRes = null;
+            try{
+                usbThermalPrinter.printString();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                printStringRes = e.toString();
+
+            }
+
+            //String addStringRes = null;
+            try{
+                usbThermalPrinter.addString("Gradle Ver: 7.1.1"); //Add String Here
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                //printResult = e.toString();
+                addStringRes = e.toString();
+
+            }
+
+            //String printStringRes = null;
             try{
                 usbThermalPrinter.printString();
             } catch (Exception e)
