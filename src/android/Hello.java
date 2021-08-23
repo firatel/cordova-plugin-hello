@@ -160,7 +160,7 @@ public class Hello extends CordovaPlugin {
 
             String textSizeRes = null;
             try{
-                usbThermalPrinter.setTextSize(0); //Text Size
+                usbThermalPrinter.setTextSize(10); //Text Size
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -236,21 +236,57 @@ public class Hello extends CordovaPlugin {
         else if(action.equals("alignment"))
         {
           alignment = Integer.parseInt(data.getString(0));
+          //String alignRes = null;
+          try{
+              usbThermalPrinter.setAlgin(alignment);
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //alignRes = e.toString();
+          }
           return true;
         }
         else if(action.equals("leftIndent"))
         {
           leftIntent = Integer.parseInt(data.getString(0));
+          //String leftRes = null;
+          try{
+              usbThermalPrinter.setLeftIndent(leftIntent); //Distance from Left
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //leftRes = e.toString();
+          }
           return true;
         }
         else if(action.equals("lineSpace"))
         {
           lineSpace = Integer.parseInt(data.getString(0));
+          //String lineSpaceRes = null;
+          try{
+              usbThermalPrinter.setLineSpace(lineSpace); //Line Space
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //lineSpaceRes = e.toString();
+          }
           return true;
         }
         else if(action.equals("fontSize"))
         {
           fontSize = Integer.parseInt(data.getString(0));
+          //String textSizeRes = null;
+          try{
+              usbThermalPrinter.setTextSize(fontSize); //Text Size
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //textSizeRes = e.toString();
+          }
           return true;
         }
         else if(action.equals("addString"))
@@ -264,6 +300,17 @@ public class Hello extends CordovaPlugin {
               e.printStackTrace();
               //printResult = e.toString();
               //addStringRes = e.toString();
+          }
+
+          //String setGrayRes = null;
+          try{
+              usbThermalPrinter.setGray(7); //Grey Level
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //setGrayRes = e.toString();
+
           }
           return true;
         }
