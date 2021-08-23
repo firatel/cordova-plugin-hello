@@ -1,5 +1,9 @@
 # TPS320 Cordova Plugin - USB THERMAL PRINTER
 
+Add with
+
+cordova plugin add https://github.com/firatel/cordova-plugin-hello
+
     /*
         Alignment
         public static final int ALGIN_LEFT = 0;
