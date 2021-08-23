@@ -9,7 +9,23 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "Hello", "info", [printerName]);
     },
 
-    alignment: function (alignment, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "Hello", "alignment", [alignment]);
+    alignment: function (align, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "alignment", [align]);
     },
+
+    leftIndent: function (indent, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "leftIndent", [indent]);
+    },
+
+    lineSpace: function (line, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "lineSpace", [line]);
+    },
+
+    fontSize: function (font, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "fontSize", [font]);
+    }
+
+
+
+
 };
