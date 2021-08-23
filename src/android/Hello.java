@@ -202,7 +202,7 @@ public class Hello extends CordovaPlugin {
 
             }
 
-            String addStringRes = null;
+            //String addStringRes = null;
             try{
                 usbThermalPrinter.addString("Support Android Ver: 7.1.1 ++"); //Add String Here
             } catch (Exception e)
@@ -213,7 +213,7 @@ public class Hello extends CordovaPlugin {
 
             }
 
-            String printStringRes = null;
+            //String printStringRes = null;
             try{
                 usbThermalPrinter.printString();
             } catch (Exception e)
