@@ -41,8 +41,8 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "Hello", "printString", [print]);
     },
 
-    printBitmap: function (base64Data, width, height, resolve, reject) {
-        cordova.exec(successCallback, errorCallback, "Hello", "printBitmap", [pictureBase64, width, height]);
+    printString: function (print, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "printBitmap", [print]);
     },
 
     walkPaper: function (num, successCallback, errorCallback) {

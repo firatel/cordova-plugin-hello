@@ -57,8 +57,6 @@ public class Hello extends CordovaPlugin {
 
     //For Picture
     String picBase64 = null;
-    int width = 0;
-    int height = 0;
 
     @Override
     protected void pluginInitialize() {
@@ -383,8 +381,8 @@ public class Hello extends CordovaPlugin {
         else if(action.equals("printBitmap"))
         {
               picBase64 = data.getString(0);
-              width = Integer.parseInt(data.getString(1));
-              height = Integer.parseInt(data.getString(2));
+              //width = Integer.parseInt(data.getString(1));
+              //height = Integer.parseInt(data.getString(2));
               byte[] decoded = Base64.decode(picBase64, Base64.DEFAULT);
               Bitmap bitmapPic = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
               //final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
