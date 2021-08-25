@@ -389,7 +389,7 @@ public class Hello extends CordovaPlugin {
               Bitmap bitmapPic = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
               //final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
           try{
-              usbThermalPrinter.printLogo(decoded,false);
+              usbThermalPrinter.printLogo(bitmapPic,false);
           } catch (Exception e)
           {
               e.printStackTrace();
