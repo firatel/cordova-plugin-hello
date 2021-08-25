@@ -57,7 +57,7 @@ public class Hello extends CordovaPlugin {
 
     //For Picture
     String picBase64 = null;
-    Bitmap bitmapPic = null
+    Bitmap bitmapPic = null;
 
     @Override
     protected void pluginInitialize() {
