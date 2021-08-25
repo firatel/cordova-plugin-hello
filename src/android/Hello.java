@@ -386,6 +386,7 @@ public class Hello extends CordovaPlugin {
               width = Integer.parseInt(data.getString(1));
               height = Integer.parseInt(data.getString(2));
               byte[] decoded = Base64.decode(picBase64, Base64.DEFAULT);
+              Bitmap bitmapPic = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
               //final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
           try{
               usbThermalPrinter.printLogo(decoded,false);
