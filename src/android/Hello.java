@@ -383,12 +383,12 @@ public class Hello extends CordovaPlugin {
         else if(action.equals("printBitmap"))
         {
               picBase64 = data.getString(0);
-              width = data.getString(1);
-              height = data.getString(2);
+              width = Integer.parseInt(data.getString(1));
+              height = Integer.parseInt(data.getString(2));
               byte[] decoded = Base64.decode(picBase64, Base64.DEFAULT);
-              final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
+              //final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
           try{
-              usbThermalPrinter.printLogo(bitMap,false);
+              usbThermalPrinter.printLogo(decoded,false);
           } catch (Exception e)
           {
               e.printStackTrace();
