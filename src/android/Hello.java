@@ -8,6 +8,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.util.Base64;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.Intent;
@@ -50,6 +54,11 @@ public class Hello extends CordovaPlugin {
     int fontSize = 30;
     int walkRow = 0;
     String textPrint = null;
+
+    //For Picture
+    String picBase64 = null;
+    int width = 0;
+    int height = 0;
 
     @Override
     protected void pluginInitialize() {
@@ -363,6 +372,23 @@ public class Hello extends CordovaPlugin {
           //String printStringRes = null;
           try{
               usbThermalPrinter.printString();
+          } catch (Exception e)
+          {
+              e.printStackTrace();
+              //printResult = e.toString();
+              //printStringRes = e.toString();
+          }
+          return true;
+        }
+        else if(action.equals("printBitmap"))
+        {
+              picBase64 = data.getString(0);
+              width = data.getString(1);
+              height = data.getString(2);
+              byte[] decoded = Base64.decode(picBase64, Base64.DEFAULT);
+              final Bitmap bitMap = bitMapUtils.decodeBitmap(decoded, width, height);
+          try{
+              usbThermalPrinter.printLogo(bitMap,false);
           } catch (Exception e)
           {
               e.printStackTrace();
